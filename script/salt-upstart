@@ -15,4 +15,3 @@ stop on runlevel [!2345]
 script
 exec salt-{{service}}
 end script
-root@docker:/etc/salt#

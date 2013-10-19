@@ -1,4 +1,4 @@
-{% salt_role = "master" %}
+{% set salt_role = "master" %}
 
 {% include 'logstash/service.jinja' %}
 

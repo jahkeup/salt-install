@@ -1,7 +1,7 @@
 include:
   - salt
 
-salt{{salt_role}}-config:
+salt-{{salt_role}}-config:
   file.managed:
     - name: /etc/salt/{{salt_role}}
     - source: salt://salt/conf/{{salt_role}}-base
@@ -9,14 +9,14 @@ salt{{salt_role}}-config:
       - pip: salt
 
 {% if grains['osfullname'] == "Ubuntu" %}
-salt{{salt_role}}-init:
+salt-{{salt_role}}-init:
   file.symlink:
     - name: /etc/init.d/salt-{{salt_role}}
     - target: /lib/init/upstart-job
     - require:
       - file: salt-upstart
 
-salt{{salt_role}}-upstart:
+salt-{{salt_role}}-upstart:
   file.managed:
     - name: /etc/init/salt-{{salt_role}}
     - source: salt://salt/script/upstart-script

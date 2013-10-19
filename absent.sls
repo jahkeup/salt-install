@@ -1,8 +1,20 @@
 {% from 'salt/map.jinja' import saltstack with context%}
+pip:
+  pkg:
+    - installed
 
 salt:
-  pip:
-    - removed
+  pip.removed:
+    - require:
+      - pkg: pip
+  pkgrepo.absent:
+    - name: saltstack-repo
+    - ppa: saltstack/salt
+  pkg.purged:
+    - pkgs:
+      - salt-common
+      - salt-minion
+      - salt-master
 
 {% for service in ['minion', 'master'] %}
 salt-{{service}}-service:

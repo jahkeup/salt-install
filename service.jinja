@@ -13,9 +13,6 @@ salt-{{salt_role}}-init:
   file.symlink:
     - name: /etc/init.d/salt-{{salt_role}}
     - target: /lib/init/upstart-job
-    - template: jinja
-    - defaults:
-        service: {{salt_role}}
     - require:
       - file: salt-{{salt_role}}-upstart
 
@@ -23,6 +20,9 @@ salt-{{salt_role}}-upstart:
   file.managed:
     - name: /etc/init/salt-{{salt_role}}.conf
     - source: salt://salt/script/salt-upstart
+    - template: jinja
+    - defaults:
+        service: {{salt_role}}
     - require_in:
       - service: salt-{{salt_role}}
     - require:

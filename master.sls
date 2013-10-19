@@ -1,6 +1,6 @@
 {% set salt_role = "master" %}
 
-{% include 'logstash/service.jinja' %}
+{% include 'salt/service.jinja' %}
 
 salt-roster-config:
   file.managed:

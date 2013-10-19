@@ -1,3 +1,3 @@
 {% set salt_role = "minion" %}
 
-{% include 'logstash/service.jinja' %}
+{% include 'salt/service.jinja' %}

@@ -11,7 +11,7 @@ salt-{{salt_role}}-config:
 {% if grains['osfullname'] == "Ubuntu" %}
 salt-{{salt_role}}-init:
   file.symlink:
-    - name: /etc/init.d/salt-{{salt_role}}.conf
+    - name: /etc/init.d/salt-{{salt_role}}
     - target: /lib/init/upstart-job
     - template: jinja
     - defaults:
@@ -21,7 +21,7 @@ salt-{{salt_role}}-init:
 
 salt-{{salt_role}}-upstart:
   file.managed:
-    - name: /etc/init/salt-{{salt_role}}
+    - name: /etc/init/salt-{{salt_role}}.conf
     - source: salt://salt/script/salt-upstart
     - require_in:
       - service: salt-{{salt_role}}

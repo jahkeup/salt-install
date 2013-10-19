@@ -24,7 +24,7 @@ salt-{{service}}-init:
 
 {% endfor %} # end service config removal.
 
-{% for kind,dir in saltstack.dir.items() %}
+{% for kind,dir in saltstack.dirs.items() %}
 salt-{{kind}}-dir:
   file.absent:
     - name: {{dir}}
